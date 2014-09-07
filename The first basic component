@@ -1,0 +1,103 @@
+Let's create a Hello World! component.
+Public display
+
+With your favorite file manager and editor, create a file yoursite/components/com_helloworld/helloworld.php containing
+
+Hello world
+
+You can test this basic component by putting index.php?option=com_helloworld in your browser address (don't forget to prefix this address with your Joomla! 3.x installation path) after installing this component.
+Administrator management
+
+With your favorite file manager and editor, create a file yoursite/administrator/components/com_helloworld/helloworld.php containing
+
+Hello world administration
+
+You can test this basic component by putting administrator/index.php?option=com_helloworld in your browser address after installing the component.
+Pack an installation zip file
+
+If you have used Joomla! before reading this tutorial, you have noticed that extensions are installed using a compressed file containing all the things which are needed for installing and uninstalling them.
+
+With your favorite file manager, create a directory (outside your Joomla! installation directory) containing
+
+With your favorite file manager, create a directory (outside your Joomla! installation directory) containing
+
+    helloworld.xml
+    site/helloworld.php
+    site/index.html
+    admin/index.html
+    admin/helloworld.php
+    admin/sql/index.html
+    admin/sql/updates/index.html
+    admin/sql/updates/mysql/index.html
+    admin/sql/updates/mysql/0.0.1.sql
+
+Create a compressed file of this directory or directly download the archive and install it using the extension manager of Joomla. You can test this basic component by putting index.php?option=com_helloworld or administrator/index.php?option=com_helloworld in your browser address. You can also notice that the Hello World! component is visible in the administrator site of your Joomla installation under the Components menu.
+File Details
+
+admin/sql/updates/mysql/0.0.1.sql is an empty file allowing to initialise schema version of the com_helloworld component.
+
+ 
+
+helloworld.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.2" method="upgrade">
+ 
+        <name>Hello World!</name>
+        <!-- The following elements are optional and free of formatting constraints -->
+        <creationDate>December 2013</creationDate>
+        <author>John Doe</author>
+        <authorEmail>john.doe@example.org</authorEmail>
+        <authorUrl>http://www.example.org</authorUrl>
+        <copyright>Copyright Info</copyright>
+        <license>License Info</license>
+        <!--  The version string is recorded in the components table -->
+        <version>0.0.1</version>
+        <!-- The description is optional and defaults to the name -->
+        <description>Description of the Hello World component ...</description>
+ 
+        <update> <!-- Runs on update; New since J2.5 -->
+                <schemas>
+                        <schemapath type="mysql">sql/updates/mysql/</schemapath>
+                </schemas>
+        </update>
+ 
+        <!-- Site Main File Copy Section -->
+        <!-- Note the folder attribute: This attribute describes the folder
+                to copy FROM in the package to install therefore files copied
+                in this section are copied from /site/ in the package -->
+        <files folder="site">
+                <filename>index.html</filename>
+                <filename>helloworld.php</filename>
+        </files>
+ 
+        <administration>
+                <!-- Administration Menu Section -->
+                <menu>Hello World!</menu>
+                <!-- Administration Main File Copy Section -->
+                <!-- Note the folder attribute: This attribute describes the folder
+                        to copy FROM in the package to install therefore files copied
+                        in this section are copied from /admin/ in the package -->
+                <files folder="admin">
+                        <!-- Admin Main File Copy Section -->
+                        <filename>index.html</filename>
+                        <filename>helloworld.php</filename>
+                        <!-- SQL files section -->
+                        <folder>sql</folder>
+                </files>
+        </administration>
+ 
+</extension>
+
+site/helloworld.php
+
+Hello World
+
+admin/helloworld.php
+
+Hello World administration
+
+index.html common to all folders
+
+<html><body bgcolor="#FFFFFF"></body></html>
+
